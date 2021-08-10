@@ -20,12 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e0c0ac8-a08a-401e-9102-3c4c50098f90" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/450_DataStructure/Arrays/Find_Min_Max_Element_In_Array.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/450_DataStructure/Arrays/Find_kth_Min_Max_Element_In_Array.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/450_DataStructure/Arrays/Reverse_Array.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/450_DataStructure/Arrays/Unsorted_array_return_two_numbers_which_constitute_the_sum.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Recursion/CheckNoConsecutiveStringPresentInNum/CheckNoConsecutiveStringPresentInNum.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/450_DataStructure/Arrays/Sort_Array_of_Os_1s_Without_Sort_Algo.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/450_DataStructure/Arrays/Unsorted_array_return_two_numbers_which_constitute_the_sum.go" beforeDir="false" afterPath="$PROJECT_DIR$/450_DataStructure/Arrays/Unsorted_array_return_two_numbers_which_constitute_the_sum.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,10 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="docker-desktop" />
+    <option name="namespace" value="default" />
+  </component>
   <component name="ProjectId" id="1vDqU6f6Sx6gFe4Wf5wEDl45IUG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -62,7 +64,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
-  <component name="RunManager" selected="Go Build.go build Unsorted_array_return_two_numbers_which_constitute_the_sum.go">
+  <component name="RunManager" selected="Go Build.go build Sort_Array_of_Os_1s_Without_Sort_Algo.go">
     <configuration name="go build Find_Min_Max_Element_In_Array.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="DataStructureInGolang" />
       <working_directory value="$PROJECT_DIR$" />
@@ -79,11 +81,11 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build Reverse_Array.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build Sort_Array_of_Os_1s_Without_Sort_Algo.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="DataStructureInGolang" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/450_DataStructure/Arrays/Reverse_Array.go" />
+      <filePath value="$PROJECT_DIR$/450_DataStructure/Arrays/Sort_Array_of_Os_1s_Without_Sort_Algo.go" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
@@ -105,11 +107,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build Sort_Array_of_Os_1s_Without_Sort_Algo.go" />
         <item itemvalue="Go Build.go build Unsorted_array_return_two_numbers_which_constitute_the_sum.go" />
         <item itemvalue="Go Build.go build Find_kth_Min_Max_Element_In_Array.go" />
         <item itemvalue="Go Build.go build Find_Min_Max_Element_In_Array.go" />
         <item itemvalue="Go Build.go build test.go" />
-        <item itemvalue="Go Build.go build Reverse_Array.go" />
       </list>
     </recent_temporary>
   </component>
@@ -140,25 +142,33 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="914" height="295" key="GridCell.Tab.0.bottom" timestamp="1627484832017">
+    <state x="733" y="301" key="FileChooserDialogImpl" timestamp="1627562718732">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627397634830" />
+    <state x="733" y="301" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1627562718732" />
+    <state width="1860" height="292" key="GridCell.Tab.0.bottom" timestamp="1627562722520">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1860" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1627562722520" />
+    <state width="1860" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627526631084" />
     <state width="914" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1627484832017" />
-    <state width="914" height="295" key="GridCell.Tab.0.center" timestamp="1627484832016">
+    <state width="1860" height="292" key="GridCell.Tab.0.center" timestamp="1627562722520">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627397634830" />
+    <state width="1860" height="292" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1627562722520" />
+    <state width="1860" height="292" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627526631084" />
     <state width="914" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1627484832016" />
-    <state width="914" height="295" key="GridCell.Tab.0.left" timestamp="1627484832016">
+    <state width="1860" height="292" key="GridCell.Tab.0.left" timestamp="1627562722520">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627397634830" />
+    <state width="1860" height="292" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1627562722520" />
+    <state width="1860" height="292" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627526631084" />
     <state width="914" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1627484832016" />
-    <state width="914" height="295" key="GridCell.Tab.0.right" timestamp="1627484832017">
+    <state width="1860" height="292" key="GridCell.Tab.0.right" timestamp="1627562722520">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627397634830" />
+    <state width="1860" height="292" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1627562722520" />
+    <state width="1860" height="292" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1627526631084" />
     <state width="914" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1627484832017" />
     <state x="461" y="184" key="SettingsEditor" timestamp="1627484884402">
       <screen x="0" y="0" width="1920" height="1080" />

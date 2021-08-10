@@ -15,7 +15,7 @@ func main() {
 }
 
 func bruteForceTechnique(arr []int,sum int) (int,int){
-
+	// TODO: In this fix to avoid self-addition
 	for  _,i:= range arr{
 		for _,i1 := range arr{
 
@@ -38,7 +38,6 @@ func optimizedSolution(arr []int,sum int) {
     // 11, 0 , -1 , 2 , -30, 1 , 7 , 2, 13
 	for i,v := range arr{
 		cur_sum = cur_sum + v
-		fmt.Println("cur_sum ",cur_sum)
 		//check whether cur_sum - sum = 0, if 0 it means
 		//the sub array is starting from index 0- so stop
 
@@ -63,7 +62,7 @@ func optimizedSolution(arr []int,sum int) {
 		fmt.Println("No subarray exist")
 
 	}
-	fmt.Println("Sum found between index :",start, ",",end,"\n Elements are: ")
+	fmt.Println("Optimized Solution: Sum found between index :",start, ",",end,"\n Elements are: ")
 	for i := start ; i <= end; i++{
 		fmt.Print(arr[i]," ")
 	}
