@@ -9,10 +9,10 @@ func main() {
 }
 func TowerOfHanoi(src, dest, helper string, n int) {
 	if n == 1 {
-		fmt.Println("Moving plate from src ", src, " to ", dest)
+		fmt.Println("Move plate ", n, " from src ", src, " to destination ", dest)
 		return
 	}
 	TowerOfHanoi(src, helper, dest, n-1)
-	fmt.Println("Moving plate from src ", src, " to ", dest)
+	fmt.Println("Move plate", n, "from src ", src, " to destination ", dest)
 	TowerOfHanoi(helper, dest, src, n-1)
 }
