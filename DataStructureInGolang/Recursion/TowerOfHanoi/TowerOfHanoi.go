@@ -5,14 +5,17 @@ import (
 )
 
 func main() {
-	TowerOfHanoi("A", "B", "C", 3)
+	count := 0
+	TowerOfHanoi("A", "B", "C", 3, &count)
+	fmt.Println("No. of steps: ", count)
 }
-func TowerOfHanoi(src, dest, helper string, n int) {
+func TowerOfHanoi(src, dest, helper string, n int, counter *int) {
+	*counter++
 	if n == 1 {
-		fmt.Println("Moving plate from src ", src, " to ", dest)
+		fmt.Println("Move plate ", n, " from src ", src, " to destination ", dest)
 		return
 	}
-	TowerOfHanoi(src, helper, dest, n-1)
-	fmt.Println("Moving plate from src ", src, " to ", dest)
-	TowerOfHanoi(helper, dest, src, n-1)
+	TowerOfHanoi(src, helper, dest, n-1, counter)
+	fmt.Println("Move plate", n, "from src ", src, " to destination ", dest)
+	TowerOfHanoi(helper, dest, src, n-1, counter)
 }
