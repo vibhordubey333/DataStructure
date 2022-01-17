@@ -1,12 +1,6 @@
 // O/P should be
 /*
-	abc
-	a
-	b
-	c
-	ab
-	bc
-	ca
+c b bc a ac ab abc
 */
 package main
 
@@ -17,7 +11,6 @@ import (
 func main() {
 	inputString := "abc"
 	output := ""
-	fmt.Println("Runn")
 	printSubsets(inputString, output)
 }
 
