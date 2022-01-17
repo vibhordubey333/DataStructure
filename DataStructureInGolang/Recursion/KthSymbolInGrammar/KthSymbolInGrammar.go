@@ -18,6 +18,6 @@ func KthSymbolInGrammar(n, k int) int {
 	if k <= mid {
 		return KthSymbolInGrammar(n-1, k)
 	} else {
-		return 1 ^ KthSymbolInGrammar(n-1, k-mid)
+		return 1 ^ KthSymbolInGrammar(n-1, k-mid) // It will give complement of first half.
 	}
 }
