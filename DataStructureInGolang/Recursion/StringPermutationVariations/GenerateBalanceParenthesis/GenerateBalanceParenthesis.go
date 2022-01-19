@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+/*
+((())) (()()) (())() ()(()) ()()()
+*/
+
 func main() {
 	userInput := 3
 	open := userInput
