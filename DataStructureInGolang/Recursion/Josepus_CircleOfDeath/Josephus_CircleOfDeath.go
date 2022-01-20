@@ -1,13 +1,29 @@
 package main
 
-func main() {
-	arr, k, index := make([]int, 0), 5, 2
+import "fmt"
 
-	arr = []int{1, 2, 3, 4, 5}
-	josephus(arr, k, index)
+/*
+Output 13
+
+*/
+func main() {
+	N := 14
+	person, k, index := make([]int, 0), 14, 0
+	k -= 1
+	for i := 1; i <= N; i++ {
+		person = append(person, i)
+	}
+	josephus(person, k, index)
 
 }
 
-func josephus(arr []int, k, index int) {
-
+func josephus(person []int, k, index int) {
+	if len(person) == 1 {
+		fmt.Println(person[0])
+		return
+	}
+	index = ((index + k) % len(person))
+	person = append(person[:index], person[index+1:]...)
+	josephus(person, k, index)
+	return
 }
