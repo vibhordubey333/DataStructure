@@ -34,9 +34,11 @@ func knapsackMemoized(weight, value []int, W, N int, qb [][]int) int {
 		return qb[W][N]
 	}
 	if weight[N-1] <= W {
-		return int(math.Max(float64(value[N-1]+knapsackMemoized(weight, value, W-weight[N-1], N-1, qb)), float64(knapsackMemoized(weight, value, W, N-1, qb))))
+		qb[W][N] = int(math.Max(float64(value[N-1]+knapsackMemoized(weight, value, W-weight[N-1], N-1, qb)), float64(knapsackMemoized(weight, value, W, N-1, qb))))
+		return qb[W][N]
 	} else if weight[N-1] > W {
-		knapsackMemoized(weight, value, W, N-1, qb)
+		qb[W][N] = knapsackMemoized(weight, value, W, N-1, qb)
+		return qb[W][N]
 	}
 	return 1
 }
