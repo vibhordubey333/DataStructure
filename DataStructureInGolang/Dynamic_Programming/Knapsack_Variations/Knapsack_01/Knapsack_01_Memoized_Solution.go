@@ -5,6 +5,15 @@ import (
 	"math"
 )
 
+/*
+	Topdown uses memoization technique.
+	Time Complexity:	O(N*W)	As redundant calculations of states are avoided.
+						Memoization and Bottomup have same complexity but upper hand is
+						of bottom-up as there is no stackoverflow error.
+
+	Space Complexity:	o(N*W)
+*/
+
 func main() {
 	value := make([]int, 0)
 	weight := make([]int, 0)

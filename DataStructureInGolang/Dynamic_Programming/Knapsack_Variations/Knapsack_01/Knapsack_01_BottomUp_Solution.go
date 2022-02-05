@@ -5,6 +5,13 @@ import (
 	"math"
 )
 
+/*
+	Bottomup uses the tabluation technique.
+	Time Complexity : O(N*W) -> Where N is the number of weight element and W is capacity. As for every weight element we traverse through
+								all weight capacities 1<=j<=W
+	Space Complexity: O(N*W) -> The use of 2-D array of size N*W.
+
+/*/
 func main() {
 	val := make([]int, 0)
 	wt := make([]int, 0)

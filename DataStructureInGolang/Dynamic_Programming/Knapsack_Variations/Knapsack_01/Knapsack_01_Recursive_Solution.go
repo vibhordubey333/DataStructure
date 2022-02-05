@@ -6,6 +6,8 @@ import (
 )
 
 /*
+	Time Complexity: O(2^n) -> Because there are redundant sub-problems
+	Space Complexity: O(1)  -> As no data-structures is used for storing values.
 	Max Profit: 220
 */
 
