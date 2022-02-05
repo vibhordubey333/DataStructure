@@ -16,21 +16,21 @@ func main() {
 }
 
 func knapsack(wt, val []int, W, n int) int {
-	K := make([][]int, n+1)
+	qb := make([][]int, n+1)
 	for i := 0; i <= n; i++ {
-		K[i] = make([]int, W+1)
+		qb[i] = make([]int, W+1)
 	}
 
 	for i := 0; i <= n; i++ {
-		for w := 0; w <= W; w++ {
-			if i == 0 || w == 0 {
-				K[i][w] = 0
-			} else if wt[i-1] <= w {
-				K[i][w] = int(math.Max(float64(val[i-1]+K[i-1][w-wt[i-1]]), float64(K[i-1][w])))
+		for j := 0; j <= W; j++ {
+			if i == 0 || j == 0 {
+				qb[i][j] = 0
+			} else if wt[i-1] <= j {
+				qb[i][j] = int(math.Max(float64(val[i-1]+qb[i-1][j-wt[i-1]]), float64(qb[i-1][j])))
 			} else {
-				K[i][w] = K[i-1][w]
+				qb[i][j] = qb[i-1][j]
 			}
 		}
 	}
-	return K[n][W]
+	return qb[n][W]
 }
