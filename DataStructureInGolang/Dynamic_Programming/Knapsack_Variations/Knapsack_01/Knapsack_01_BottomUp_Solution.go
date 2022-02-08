@@ -7,6 +7,7 @@ import (
 
 /*
 	Bottomup uses the tabluation technique.
+
 	Time Complexity : O(N*W) -> Where N is the number of weight element and W is capacity. As for every weight element we traverse through
 								all weight capacities 1<=j<=W
 	Space Complexity: O(N*W) -> The use of 2-D array of size N*W.
@@ -37,6 +38,19 @@ func knapsack(wt, val []int, W, n int) int {
 			} else {
 				qb[i][j] = qb[i-1][j]
 			}
+		}
+	}
+	//Printing Items which have been included in the knapsack
+	i, j := n, W
+	fmt.Println("Items which are included in knapsack")
+	for i > 0 && j > 0 {
+		if qb[i][j] == qb[i-1][j] {
+			fmt.Println(i, "= 0")
+			i--
+		} else {
+			fmt.Println(i, " = 1")
+			i--
+			j = j - wt[i]
 		}
 	}
 	return qb[n][W]
