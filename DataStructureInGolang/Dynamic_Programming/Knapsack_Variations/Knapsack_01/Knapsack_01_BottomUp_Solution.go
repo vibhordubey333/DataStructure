@@ -12,7 +12,8 @@ import (
 								all weight capacities 1<=j<=W
 	Space Complexity: O(N*W) -> The use of 2-D array of size N*W.
 
-/*/
+*/
+
 func main() {
 	val := make([]int, 0)
 	wt := make([]int, 0)
@@ -55,3 +56,10 @@ func knapsack(wt, val []int, W, n int) int {
 	}
 	return qb[n][W]
 }
+
+/*	========= Output ==========
+	Items which are included in knapsack
+	3  = 1
+	2  = 1
+	Profit: 220
+*/
