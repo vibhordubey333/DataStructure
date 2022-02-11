@@ -35,9 +35,9 @@ func knapsack(wt, val []int, W, n int) int {
 			if i == 0 || j == 0 {
 				qb[i][j] = 0
 			} else if wt[i-1] <= j {
-				qb[i][j] = int(math.Max(float64(val[i-1]+qb[i-1][j-wt[i-1]]), float64(qb[i-1][j])))
+				qb[i][j] = int(math.Max(float64(val[i-1]+qb[i-1][j-wt[i-1]]), float64(qb[i-1][j]))) // Including the profit as weight is acceptable.
 			} else {
-				qb[i][j] = qb[i-1][j]
+				qb[i][j] = qb[i-1][j] // Ignoting the profit as weight is exceeding.
 			}
 		}
 	}
