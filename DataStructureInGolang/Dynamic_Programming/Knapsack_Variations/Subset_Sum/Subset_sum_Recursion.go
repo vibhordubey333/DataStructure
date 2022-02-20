@@ -36,5 +36,6 @@ func isSubSetSum(arr []int, n, sum int) bool {
 		A. Including the last element.
 		B. Excluding the last element i.e sum-arr[n-1]
 	*/
+	fmt.Println("n-1:", n)
 	return isSubSetSum(arr, n-1, sum) || isSubSetSum(arr, n-1, sum-arr[n-1])
 }
