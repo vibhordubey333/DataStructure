@@ -6,8 +6,8 @@ import (
 
 func main() {
 	arr := make([]int, 0)
-	arr = []int{1, 2, 3, 6}
-	sum := 6
+	arr = []int{5, 5, 1, 11, 22}
+	sum := 22
 	n := len(arr)
 	fmt.Println(isEqualSumPartitionExist(arr, n, sum))
 }
