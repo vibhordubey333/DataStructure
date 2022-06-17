@@ -1,29 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func printFibonacii(a int, b int, n int) {
-	var sum int = 0
-	if n > 0 {
-		sum = a + b
-		fmt.Printf("%d ", sum)
-		a,b = b,sum
-		printFibonacii(a, b, n-1)
-	}
-}
+/*Notes:
+1. If while calling printFibonacci we do n-2 then pattern for N=5 will be [0,1,1,2,3]. Comment this line below fmt.Printf(" 0 || 1 ||")
+2. And if we pass N=5 as it is then output will be [1,2,3,5,8]
+*/
 
 func main() {
-	var a, b, n int
+	firstNum := 0
+	secondNum := 1
+	n := 5
+	fmt.Printf(" 0 || 1 ||")
+	printFibonacci(firstNum, secondNum, n)
+}
 
-	a = 0
-	b = 1
-
-	fmt.Printf("Enter total number of terms: ")
-	fmt.Scanf("%d", &n)
-
-	fmt.Printf("Fibonacii series is : ")
-	fmt.Printf("%d\t%d ", a, b)
-
-	printFibonacii(a, b, n-2)
-	fmt.Printf("\n")
+func printFibonacci(firstNum, secondNum, n int) {
+	sum := 0
+	if n > 0 {
+		sum = firstNum + secondNum
+		fmt.Printf("%d || ", sum)
+		firstNum, secondNum = secondNum, sum
+		printFibonacci(firstNum, secondNum, n-1)
+	}
 }
