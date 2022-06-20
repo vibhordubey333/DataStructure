@@ -1,39 +1,54 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+/*
+	    1
+	   / \
+	  2   3
+	 /   / \
+	4   5	6
+	Tree Height: 3
+*/
 
 type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
+	value     interface{}
+	leftNode  *TreeNode
+	rightNode *TreeNode
 }
 
-func main() {
+func (t *TreeNode) initializeTreeNode() *TreeNode {
 	root := new(TreeNode)
-	root.Left = &TreeNode{Val: 1}
-	root.Left.Left = &TreeNode{Val: 2}
-	//root.Left.Right = &TreeNode{Val: 4}
-	root.Right = &TreeNode{Val: 3}
-	root.Right.Left = &TreeNode{Val: 5}
-	root.Right.Right = &TreeNode{Val: 6}
+	root.value = 1
+	root.leftNode = &TreeNode{value: 2}
+	root.rightNode = &TreeNode{value: 3}
 
-	fmt.Println("Max Height of BTree is: ", maxDepth(root))
+	root.leftNode.leftNode = &TreeNode{value: 4}
+	root.rightNode.leftNode = &TreeNode{value: 5}
+	root.rightNode.rightNode = &TreeNode{value: 6}
+	return root
 }
 
-func maxDepth(root *TreeNode) int {
-
+func (t *TreeNode) findMaxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	if root.Left == nil && root.Right == nil {
+	if root.leftNode == nil && root.rightNode == nil {
 		return 1
 	}
-	lHeight := maxDepth(root.Left)
-	rHeight := maxDepth(root.Right)
-
-	if lHeight >= rHeight {
-		return lHeight + 1
+	leftHeight := root.findMaxDepth(root.leftNode)
+	rightHeight := root.findMaxDepth(root.rightNode)
+	if leftHeight > rightHeight {
+		return leftHeight + 1
 	}
+	return rightHeight + 1
+}
 
-	return rHeight + 1
+func main() {
+	treeNodeObject := new(TreeNode)
+	treeNodeObject = treeNodeObject.initializeTreeNode()
+	treeHeight := treeNodeObject.findMaxDepth(treeNodeObject)
+	fmt.Println("Maximum Height Of A Binary Tree: ", treeHeight)
 }
