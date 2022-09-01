@@ -13,25 +13,24 @@ abc
 */
 
 func main() {
+
 	inputString := "abc"
-	output := ""
-	output += string(inputString[0])
-	inputString = inputString[1:]
-	permutationWithSpace(inputString, output)
+	outputString := string(inputString[0]) // OutputString = "a"
+	inputString = inputString[1:]          //inputString = "bc"
+	permutationWithSpacesInMiddle(inputString, outputString)
 }
 
-func permutationWithSpace(input, output string) {
-	if len(input) == 0 {
-		fmt.Print(" ", output)
+func permutationWithSpacesInMiddle(inputString, outputString string) {
+	if len(inputString) == 0 {
+		fmt.Println(" ", outputString)
 		return
 	}
-	output1 := output
-	output2 := output
-	output1 += "_"
-	output1 += string(input[0])
-	output2 += string(input[0])
-	input = input[1:]
-	permutationWithSpace(input, output1)
-	permutationWithSpace(input, output2)
-
+	output_1 := outputString           //output_1 = "a"
+	output_2 := outputString           //output_1 = "b"
+	output_1 += "_"                    //output_1 = "a_"
+	output_1 += string(inputString[0]) //output_1 = "a_b"
+	output_2 += string(inputString[0]) //output_2 ="ab"
+	inputString = inputString[1:]      //inputString = "c"
+	permutationWithSpacesInMiddle(inputString, output_1)
+	permutationWithSpacesInMiddle(inputString, output_2)
 }
