@@ -7,7 +7,7 @@ import (
 var (
 	N = 10 // Output should be 55
 	//N  = 0				// Output should be 0
-	qb = make([]int, N+1) // qb is our question bank from where we'll fetch the problem output which we've already solved.
+	qb = make([]int, N+1) // qb is our question bank from where we'll fetch the problem output which spwe've already solved.
 	// Using N+1 to store the Output
 )
 

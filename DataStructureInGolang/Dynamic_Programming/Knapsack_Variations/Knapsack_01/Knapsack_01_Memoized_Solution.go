@@ -26,8 +26,13 @@ func main() {
 	for i := range qb {
 		qb[i] = make([]int, 1002)
 	}
-	for i := 0; i < 1002; i++ {
+	/*for i := 0; i < 1002; i++ {
 		for j := 0; j < 1002; j++ {
+			qb[i][j] = -1
+		}
+	}*/
+	for i := range qb {
+		for j := range qb {
 			qb[i][j] = -1
 		}
 	}

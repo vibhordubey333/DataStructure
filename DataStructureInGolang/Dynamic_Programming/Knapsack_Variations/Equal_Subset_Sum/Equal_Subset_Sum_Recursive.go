@@ -16,6 +16,7 @@ func isEqualSumPartitionExist(arr []int, n, sum int) bool {
 	if sum == 0 {
 		return true
 	}
+	//Performing sum%2 as we've to check if they can be divided into equal subset.
 	if n == 0 || sum%2 != 0 || sum < 0 { // Return false if n and sum is not even or is sum is less than zero.
 		return false
 	}

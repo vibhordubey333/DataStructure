@@ -5,20 +5,20 @@ import (
 )
 
 /*
-	Time Complexity: O(2^N)
-	This problem is NP-Complete(There is no known polynoial time solution for this problem)
-	Space Complexity: O(1)
-	As no data structure is used to store the values
+Time Complexity: O(2^N)
+This problem is NP-Complete(There is no known polynoial time solution for this problem)
+Space Complexity: O(1)
+As no data structure is used to store the values
 */
 func main() {
 	arr := make([]int, 0)
 	arr = []int{3, 34, 4, 12, 5, 2}
 	n := len(arr)
 	sum := 9
-	fmt.Println("Output: ", isSubSetSum(arr, n, sum))
+	fmt.Println("Output: ", isSubSetSum_Recursive(arr, n, sum))
 }
 
-func isSubSetSum(arr []int, n, sum int) bool {
+func isSubSetSum_Recursive(arr []int, n, sum int) bool {
 	//Base Cases
 	if sum == 0 {
 		return true
@@ -28,7 +28,7 @@ func isSubSetSum(arr []int, n, sum int) bool {
 	}
 	//If last element is greater than sum than ignore it.
 	if arr[n-1] > sum {
-		isSubSetSum(arr, n-1, sum)
+		isSubSetSum_Recursive(arr, n-1, sum)
 	}
 
 	/*
@@ -36,6 +36,6 @@ func isSubSetSum(arr []int, n, sum int) bool {
 		A. Including the last element.
 		B. Excluding the last element i.e sum-arr[n-1]
 	*/
-	fmt.Println("n-1:", n)
-	return isSubSetSum(arr, n-1, sum) || isSubSetSum(arr, n-1, sum-arr[n-1])
+
+	return isSubSetSum_Recursive(arr, n-1, sum) || isSubSetSum_Recursive(arr, n-1, sum-arr[n-1])
 }

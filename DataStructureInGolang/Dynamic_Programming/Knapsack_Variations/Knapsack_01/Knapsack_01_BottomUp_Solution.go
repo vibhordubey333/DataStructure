@@ -37,10 +37,11 @@ func knapsack(wt, val []int, W, n int) int {
 			} else if wt[i-1] <= j {
 				qb[i][j] = int(math.Max(float64(val[i-1]+qb[i-1][j-wt[i-1]]), float64(qb[i-1][j]))) // Including the profit as weight is acceptable.
 			} else {
-				qb[i][j] = qb[i-1][j] // Ignoting the profit as weight is exceeding.
+				qb[i][j] = qb[i-1][j] // Ignoring the profit as weight is exceeding.
 			}
 		}
 	}
+	fmt.Println("Total Profit: ", qb[n][W])
 	//Printing Items which have been included in the knapsack
 	i, j := n, W
 	fmt.Println("Items which are included in knapsack")
@@ -54,6 +55,7 @@ func knapsack(wt, val []int, W, n int) int {
 			j = j - wt[i]
 		}
 	}
+	//Returning total profit.
 	return qb[n][W]
 }
 
