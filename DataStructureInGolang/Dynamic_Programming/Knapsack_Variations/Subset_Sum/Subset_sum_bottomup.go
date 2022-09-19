@@ -18,9 +18,11 @@ func main() {
 
 func subsetsumBottomUp(arr []int, sum, n int, qb [][]bool) bool {
 
+	//Initializing qb[i][0] with true. As in recursive approach whenever sum is eq to 0 we're returning true.
 	for i := 0; i <= n; i++ {
 		qb[i][0] = true
 	}
+	//Initializing qb[0][i] with false. As when array is empty sum will be always false.
 	for i := 1; i <= sum; i++ {
 		qb[0][i] = false
 	}
