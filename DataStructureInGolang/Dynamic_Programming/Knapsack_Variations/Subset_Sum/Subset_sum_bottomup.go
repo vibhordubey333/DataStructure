@@ -22,7 +22,7 @@ func subsetsumBottomUp(arr []int, sum, n int, qb [][]bool) bool {
 	for i := 0; i <= n; i++ {
 		qb[i][0] = true
 	}
-	//Initializing qb[0][i] with false. As when array is empty sum will be always false.
+	//Initializing qb[0][i] with false. As when array is empty sum will be always false. Perform this operation from n:= 1 to n <= sum.
 	for i := 1; i <= sum; i++ {
 		qb[0][i] = false
 	}
