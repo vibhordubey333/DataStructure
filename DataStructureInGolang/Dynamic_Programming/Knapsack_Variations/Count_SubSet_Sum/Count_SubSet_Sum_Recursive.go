@@ -11,8 +11,8 @@ import (
 
 func main() {
 	arr := make([]int, 0)
-	arr = []int{1, 2, 3, 4, 5}
-	sum := 10
+	arr = []int{1,2,2,3}//{2, 3, 5, 6, 8, 10}//{1, 2, 3, 4, 5}
+	sum := 3
 	n := len(arr)
 	fmt.Println("Recursive Approach Result: ", countSubSetsRecursive(arr, sum, n, 0, 0))
 	//Expected Output : 3
@@ -20,10 +20,11 @@ func main() {
 
 func countSubSetsRecursive(arr []int, sum, n, count, i int) int {
 
-	if i == n {
-		if sum == 0 {
-			count++
-		}
+	if sum == 0{
+		count = count + 1
+		return count
+	}
+	if n == 0{
 		return count
 	}
 
