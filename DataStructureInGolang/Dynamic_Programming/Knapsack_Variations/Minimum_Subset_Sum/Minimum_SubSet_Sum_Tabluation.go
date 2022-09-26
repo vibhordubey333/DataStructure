@@ -8,7 +8,7 @@ import (
 
 func main() {
 	arr := make([]int, 0)
-	arr = []int{1, 2, 7} //{1, 2, 3} //
+	arr = []int{1, 2, 7} //OP:4 // {1, 2, 3} OP:0 //
 	n := len(arr)
 	findSum_Tabluation(arr, n)
 }
