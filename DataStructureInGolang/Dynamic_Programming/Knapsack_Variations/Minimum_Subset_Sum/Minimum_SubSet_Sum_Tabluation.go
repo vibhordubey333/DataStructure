@@ -10,10 +10,10 @@ func main() {
 	arr := make([]int, 0)
 	arr = []int{1, 2, 7} //OP:4 // {1, 2, 3} OP:0 //
 	n := len(arr)
-	findSum_Tabluation(arr, n)
+	findTotalSum(arr, n)
 }
 
-func findSum_Tabluation(arr []int, n int) {
+func findTotalSum(arr []int, n int) {
 	totalSum := 0
 
 	for _, v := range arr {
@@ -43,7 +43,7 @@ func findSubSetSum_Tabluation(arr []int, n, sum int) []int {
 		qb[i] = make([]bool, sum+1)
 	}
 
-	//Initialization
+	//Initialization of first row and column
 	for i := 0; i <= n; i++ {
 		for j := 0; j <= sum; j++ {
 			if i == 0 {
@@ -55,7 +55,7 @@ func findSubSetSum_Tabluation(arr []int, n, sum int) []int {
 		}
 	}
 
-	// Taking from the 2nd row and 2nd column
+	// Performing operation on the 2nd row and 2nd column
 	for i := 1; i <= n; i++ {
 		for j := 1; j <= sum; j++ {
 			if arr[i-1] <= j {
@@ -69,6 +69,7 @@ func findSubSetSum_Tabluation(arr []int, n, sum int) []int {
 
 	elementsSlice := make([]int, 0)
 
+	// Traversing last row and fetching all the values which are true.
 	for j := 0; j <= sum; j++ {
 		if qb[n][j] == true {
 			elementsSlice = append(elementsSlice, j)
