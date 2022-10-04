@@ -3,9 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	n := 5
+	n := 9
 	arr := make([]int, n+1)
-	arr = []int{1, 2, 3, 1, 2}
+	//arr = []int{1, 2, 3, 1, 2} //diff=1 // n=5 // output=5
+	arr = []int{0, 0, 0, 0, 0, 0, 0, 0, 1} // diff=1 // n=9 //output=256
 	diff := 1
 	fmt.Println("Count Of SubSets With Given Difference Is: ", CountSubSetsWithDiff(arr, n, diff))
 }
@@ -31,6 +32,7 @@ func countNoOfSubsets_Tabluation(arr []int, n, sum int) int {
 	}
 
 	for i := 0; i <= n; i++ {
+		//Starting inner loop from zero as it handles this case {0,0,0,0,0,0,0,0,1}
 		for j := 0; j <= sum; j++ {
 			if i == 0 {
 				qb[i][j] = 0
@@ -43,7 +45,7 @@ func countNoOfSubsets_Tabluation(arr []int, n, sum int) int {
 	// i denotes size of the array
 	// j denotes the target sum
 	for i := 1; i <= n; i++ {
-		for j := 1; j <= sum; j++ {
+		for j := 0; j <= sum; j++ {
 			if arr[i-1] <= j { //Including + exluding
 				qb[i][j] = qb[i-1][j-arr[i-1]] + qb[i-1][j]
 			} else { //Including
