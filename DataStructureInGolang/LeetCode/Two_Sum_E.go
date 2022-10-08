@@ -24,6 +24,11 @@ Output: [1,2]
 Runtime: 9 ms, faster than 75.38% of Go online submissions for Two Sum.
 Memory Usage: 5.7 MB, less than 6.40% of Go online submissions for Two Sum.
 */
+
+/*
+Time Complexity: O(n)
+Space Complexity: O(n)
+*/
 func twoSum(nums []int, target int) []int {
 	// For storing output.
 	result := make([]int, 2)
