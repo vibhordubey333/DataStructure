@@ -22,6 +22,7 @@ package main
 func main() {}
 
 /*
+
 Runtime: 17 ms, faster than 68.83% of Go online submissions for Two Sum II - Input Array Is Sorted.
 Memory Usage: 6.1 MB, less than 5.45% of Go online submissions for Two Sum II - Input Array Is Sorted.
 SC: O(n)
@@ -33,9 +34,9 @@ func twoSum_HashMapApproach(numbers []int, target int) []int {
 	result := make([]int, n)
 
 	for i := 0; i < n; i++ {
-		complement := target - numbers[i]
+		difference := target - numbers[i]
 
-		val, ok := mapObject[complement]
+		val, ok := mapObject[difference]
 		if ok {
 			result[0] = val
 			result[1] = i + 1
@@ -50,7 +51,7 @@ func twoSum_HashMapApproach(numbers []int, target int) []int {
 Runtime: 25 ms, faster than 43.27% of Go online submissions for Two Sum II - Input Array Is Sorted.
 Memory Usage: 5.4 MB, less than 56.41% of Go online submissions for Two Sum II - Input Array Is Sorted.
 TC: O(nlog(n)))
-SP: O(1)
+SP: O(n)
 */
 func twoSum_TwoPointerApproach(numbers []int, target int) []int {
 	frontPtr := 0
