@@ -1,10 +1,4 @@
 //https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/
-package main
-
-import (
-	"sort"
-)
-
 /*
 You are given an array of integers nums and an integer target.
 
@@ -34,15 +28,24 @@ Memory Usage: 9.3 MB, less than 14.29% of Go online submissions for Number of Su
 TC: O(nlog(n))
 SC: O(n)
 */
+package main
+
+import (
+	"sort"
+)
+
 func numSubseq(nums []int, target int) int {
+	//On LHS there will be small no. and on RHS large no.
 	sort.Ints(nums)
-	const MOD = 1000000007 //1e9 + 7
+	const MOD = 1000000007 // Avoid using 1e9 + 7 as it takes more time to execute
 	n := len(nums)
 	exponents := make([]int, n+1)
+	//Setting index 1 value as 1 other values like exponents[0] will already be populated by zero itself.
 	exponents[1] = 1
 	//Pre-computing power of 2 as it can result into TLE.
 	//We will return answer % MOD as answer can be large.
-	for i := 2; i < n+1; i++ {
+	//Other values are already set initializing loop from i = 2
+	for i := 2; i <= n; i++ {
 		exponents[i] = (2 * exponents[i-1]) % MOD //Or exponents[i-1] << 1%MOD
 	} //Output of exponents: [0 1 2 4 8 16]
 	left := 0
@@ -59,3 +62,5 @@ func numSubseq(nums []int, target int) int {
 	}
 	return count
 }
+
+func main() {}
