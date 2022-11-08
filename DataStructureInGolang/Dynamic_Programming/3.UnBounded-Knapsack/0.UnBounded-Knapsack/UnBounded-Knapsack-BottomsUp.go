@@ -6,11 +6,11 @@ import "math"
 func main() {
 	val := make([]int, 0)
 	wt := make([]int, 0)
-	w := 50
-	val = []int{60, 100, 120}
-	wt = []int{10, 20, 30}
-	n := 3
-	fmt.Println("Profit:", unBoundedKnapsackBottomsUp(wt, val, w, n))
+	w := 100
+	val = []int{1, 30}
+	wt = []int{1, 50}
+	n := 2
+	fmt.Println("Profit:", unBoundedKnapsackBottomsUp(wt, val, w, n)) //Expected Output: Profit: 100
 }
 
 func unBoundedKnapsackBottomsUp(wt, val []int, w, n int) int {
@@ -26,7 +26,7 @@ func unBoundedKnapsackBottomsUp(wt, val []int, w, n int) int {
 			if i == 0 || j == 0 {
 				qb[i][j] = 0
 			} else if wt[i-1] <= j {
-				qb[i][j] = int(math.Max(float64(val[i-1]+qb[i-1][j-wt[i-1]]), float64(qb[i-1][j])))
+				qb[i][j] = int(math.Max(float64(val[i-1]+qb[i][j-wt[i-1]]), float64(qb[i-1][j])))
 			} else {
 				//Ignoring the profit when weight is exceeding
 				qb[i][j] = qb[i-1][j]
