@@ -23,8 +23,8 @@ Explanation: There are 6 subsequences that satisfy the condition. (nums can have
 [3] , [3] , [3,3], [3,6] , [3,6] , [3,3,6]
 */
 
-/*Runtime: 257 ms, faster than 57.14% of Go online submissions for Number of Subsequences That Satisfy the Given Sum Condition.
-Memory Usage: 9.3 MB, less than 14.29% of Go online submissions for Number of Subsequences That Satisfy the Given Sum Condition.
+/*Runtime: 134 ms, faster than 93.33% of Go online submissions for Number of Subsequences That Satisfy the Given Sum Condition.
+Memory Usage: 8.2 MB, less than 100.00% of Go online submissions for Number of Subsequences That Satisfy the Given Sum Condition.
 TC: O(nlog(n))
 SC: O(n)
 */
@@ -55,7 +55,7 @@ func numSubseq(nums []int, target int) int {
 	for left <= right {
 		if nums[left]+nums[right] > target {
 			right--
-		} else {
+		} else { //Found our sum so increasing count.
 			count = (count + exponents[right-left+1]) % MOD
 			left++
 		}

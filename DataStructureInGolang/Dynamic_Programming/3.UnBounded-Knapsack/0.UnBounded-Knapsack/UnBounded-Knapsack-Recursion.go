@@ -38,3 +38,16 @@ func max(i, j int) int {
 	return j
 }
 
+//WorkingCode
+func unBoundedKnapsackRecursive_2(wt, val []int, w, n int) int {
+	if n == 0 || w == 0 {
+		return 0
+	}
+	excluded := unBoundedKnapsackRecursive_2(wt, val, w, n-1)
+	if wt[n-1] > w {
+		return excluded
+	} else {
+		included := val[n-1] + unBoundedKnapsackRecursive_2(wt, val, w-wt[n-1], n)
+		return max(included, excluded)
+	}
+}
