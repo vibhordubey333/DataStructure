@@ -1,58 +1,81 @@
+// You can edit this code!
+// Click here and start typing.
 package main
 
 import "fmt"
 
-type Item struct {
-	value interface{}
-	next  *Item
+type StackMethods interface {
+	Push(value interface{})
+	Peek()
+	Pop()
+	Size() int
 }
+
 type Stack struct {
-	top  *Item
+	node *Node
 	size int
 }
 
-func (stackobj *Stack) IsEmpty() bool {
-	if stackobj.size <= 0 {
-		return true
+type Node struct {
+	value interface{}
+	next  *Node
+}
+
+func (s *Stack) Size() int {
+	return s.size
+}
+func (s *Stack) Push(value interface{}) {
+	s.node = &Node{
+		value: value,
+		next:  s.node,
+	}
+	s.size++
+}
+
+func (s *Stack) Peek() {
+	if s.size > 0 {
+		fmt.Println("Element: ", s.node.value)
 	} else {
-		return false
+		fmt.Println("No elements in stack to display.")
+	}
+
+}
+
+func (s *Stack) Pop() {
+	if s.size > 0 {
+		fmt.Printf("Removing element %v from stack.\n", s.node.value)
+		s.node = s.node.next
+		s.size--
+	} else {
+		fmt.Println("No elements in stack to remove.")
 	}
 }
 
-func (stackobj *Stack) Len() int {
-	return stackobj.size
-}
-func (stackobj *Stack) TopOfStack() {
-	if stackobj.IsEmpty() != true {
-		fmt.Println("Top Element: ", stackobj.top.value)
-	} else {
-		fmt.Println("Stack is empty.")
-	}
-}
-func (stackobj *Stack) Pop() (value interface{}) {
-	if stackobj.Len() > 0 {
-		value = stackobj.top.value
-		stackobj.top = stackobj.top.next
-		stackobj.size--
-		return
-	}
-	return nil
-}
-func (stackobj *Stack) Push(value interface{}) {
-	stackobj.top = &Item{
-		value: value,
-		next:  stackobj.top,
-	}
-	stackobj.size++
-}
 func main() {
-	stack := new(Stack)
-	stack.Push("A")
-	stack.Push(12)
-	stack.TopOfStack()
-	stack.Push(23.23)
-	fmt.Println("IsEmpty:", stack.IsEmpty())
-	for stack.Len() > 0 {
-		fmt.Println(stack.Pop())
-	}
+	//Creating interface object.
+	var stackObject StackMethods
+	//Assigning Stack struct object to interface object.
+	stackObject = new(Stack)
+
+	stackObject.Push("A")
+	fmt.Println("Size:", stackObject.Size())
+	stackObject.Peek()
+	stackObject.Pop()
+	stackObject.Peek()
+	fmt.Println("Size:", stackObject.Size())
+	stackObject.Push("B")
+	fmt.Println("Size:", stackObject.Size())
+	stackObject.Peek()
 }
+
+/*
+Output:
+
+Size: 1
+Element:  A
+Removing element A from stack.
+No elements in stack to display.
+Size: 0
+Size: 1
+Element:  B
+*/
