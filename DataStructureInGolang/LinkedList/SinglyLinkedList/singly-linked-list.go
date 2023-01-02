@@ -21,18 +21,27 @@ type Node struct {
 }
 
 func (s *SinglyLinkedList) Insert(value interface{}) {
-	dataObject := &Node{value: value, next: nil}
+	fmt.Println("Inserting element:", value)
+	dataObject := Node{} //&Node{value: value, next: nil}
+	dataObject.value = value
 	//If nil insert at head
 	if s.head == nil {
-		s.head = dataObject
+		fmt.Println("Inserting in front as list is nil")
+		s.head = &dataObject
+		s.size++
 	} else {
+		fmt.Println("Inserting in rear as one or more element is present")
 		ptr := s.head
-		for ptr != nil {
+		for i := 0; i < s.size; i++ {
+			if ptr.next == nil {
+				ptr.next = &dataObject
+				s.size++
+				return
+			}
 			ptr = ptr.next
 		}
-		ptr = dataObject
 	}
-	s.size++
+
 }
 
 func (s *SinglyLinkedList) Search(value interface{}) {
@@ -44,28 +53,20 @@ func (s *SinglyLinkedList) Size() int {
 }
 
 func (s *SinglyLinkedList) Display() {
-	fmt.Println("LinkedList size is : ", s.Size())
 	if s.Size() > 0 {
-		// Creating a temporary variable. To avoid manipulation.
-		ptr := s
-		for ptr.head != nil {
-			fmt.Println("Elements: ", s.head.value)
-			ptr.head = ptr.head.next
+		ptr := s.head
+		for i := 0; i < s.Size(); i++ {
+			fmt.Println(i, "Element: ", ptr.value)
+			ptr = ptr.next
 		}
+
 	} else {
 		fmt.Println("LinkedList is empty.")
 	}
 }
 
 func (s *SinglyLinkedList) Reverse() {
-	/*
-		ptr := s.head
-		var prev *Node
 
-		for ptr != nil {
-			ptr, prev, ptr.next = ptr.next, ptr, prev
-		}
-	*/
 	curr := s.head
 	var prev *Node
 	var next *Node
@@ -83,10 +84,11 @@ func main() {
 	var llo SinglyLinkedListMethods
 	llo = new(SinglyLinkedList)
 	llo.Insert("A")
-	llo.Display()
 	llo.Insert("B")
-	llo.Display()
 	llo.Insert("C")
+	llo.Insert("D")
+	fmt.Println("SinglyLinkedList Size:", llo.Size())
+	fmt.Println("Before Reversing: ")
 	llo.Display()
 	fmt.Println("After Reversing List:")
 	llo.Reverse()
