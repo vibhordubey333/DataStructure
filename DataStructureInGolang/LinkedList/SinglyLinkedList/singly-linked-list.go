@@ -55,11 +55,10 @@ func (s *SinglyLinkedList) Size() int {
 func (s *SinglyLinkedList) Display() {
 	if s.Size() > 0 {
 		ptr := s.head
-		for i := 0; i < s.Size(); i++ {
-			fmt.Println(i, "Element: ", ptr.value)
+		for ptr != nil{
+			fmt.Println("Element: ",ptr.value)
 			ptr = ptr.next
 		}
-
 	} else {
 		fmt.Println("LinkedList is empty.")
 	}
