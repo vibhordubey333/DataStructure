@@ -22,19 +22,18 @@ type Node struct {
 
 func (s *SinglyLinkedList) Insert(value interface{}) {
 	fmt.Println("Inserting element:", value)
-	dataObject := Node{} //&Node{value: value, next: nil}
-	dataObject.value = value
-	//If nil insert at head
+	dataObject := &Node{value: value, next: nil}
+
 	if s.head == nil {
 		fmt.Println("Inserting in front as list is nil")
-		s.head = &dataObject
+		s.head = dataObject
 		s.size++
 	} else {
 		fmt.Println("Inserting in rear as one or more element is present")
 		ptr := s.head
 		for i := 0; i < s.size; i++ {
 			if ptr.next == nil {
-				ptr.next = &dataObject
+				ptr.next = dataObject
 				s.size++
 				return
 			}
@@ -45,7 +44,21 @@ func (s *SinglyLinkedList) Insert(value interface{}) {
 }
 
 func (s *SinglyLinkedList) Search(value interface{}) {
-
+	if s.Size() > 0{
+		ptr := s.head
+		locationPtr := 0
+		for ptr != nil{
+			if ptr.value == value{
+				fmt.Println("Element ",ptr.value," found at index, ",locationPtr)
+				return
+			}
+			ptr = ptr.next
+			locationPtr++
+		}
+	}else{
+		fmt.Println("No elements in list to search.")
+	}
+	fmt.Println("Element ",value," not present in list.")
 }
 
 func (s *SinglyLinkedList) Size() int {
@@ -92,4 +105,10 @@ func main() {
 	fmt.Println("After Reversing List:")
 	llo.Reverse()
 	llo.Display()
+	fmt.Print("Searching element A in list: ")
+	llo.Search("A")
+	fmt.Print("Searching element C in list: ")
+	llo.Search("C")
+	fmt.Print("Searching element ERT in list: ")
+	llo.Search("ERT")
 }
