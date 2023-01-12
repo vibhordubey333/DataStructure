@@ -30,3 +30,6 @@
 5. Facade
 6. Flyweight
 7. Proxy
+
+----References-----
+1. https://www.javatpoint.com/design-patterns-in-java
