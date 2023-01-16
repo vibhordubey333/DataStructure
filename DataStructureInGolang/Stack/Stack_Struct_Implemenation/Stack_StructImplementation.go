@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type StackMethods interface {
 	Push(value interface{})
@@ -14,6 +17,7 @@ type StackMethods interface {
 type Stack struct {
 	node *Node
 	size int
+	lock sync.Mutex
 }
 
 type Node struct {
@@ -25,6 +29,8 @@ func (s *Stack) Size() int {
 	return s.size
 }
 func (s *Stack) Push(value interface{}) {
+	s.lock.Lock()
+	defer s.lock.Unlock()
 	s.node = &Node{
 		value: value,
 		next:  s.node,
@@ -32,7 +38,7 @@ func (s *Stack) Push(value interface{}) {
 	s.size++
 }
 
-func (s *Stack) Peek() interface{}{
+func (s *Stack) Peek() interface{} {
 	if s.size > 0 {
 		fmt.Println("Element: ", s.node.value)
 		return s.node.value
@@ -43,6 +49,8 @@ func (s *Stack) Peek() interface{}{
 }
 
 func (s *Stack) Pop() {
+	s.lock.Lock()
+	defer s.lock.Unlock()
 	if s.size > 0 {
 		fmt.Printf("Removing element %v from stack.\n", s.node.value)
 		s.node = s.node.next
@@ -52,12 +60,14 @@ func (s *Stack) Pop() {
 	}
 }
 
-func (s *Stack) Reverse(){
-	if s.node != nil{
-		var next,prev *Node
+func (s *Stack) Reverse() {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+	if s.node != nil {
+		var next, prev *Node
 		curr := s.node
 
-		for curr != nil{
+		for curr != nil {
 			next = curr.next
 			curr.next = prev
 			prev = curr
@@ -68,14 +78,14 @@ func (s *Stack) Reverse(){
 	}
 }
 
-func(s *Stack) Display(){
-	if s.node != nil{
+func (s *Stack) Display() {
+	if s.node != nil {
 		ptr := s.node
 		fmt.Println("Displaying elements")
-		for ptr != nil{
-			fmt.Print(ptr.value,"\n")
+		for ptr != nil {
+			fmt.Print(ptr.value, "\n")
 			fmt.Println("____")
-			ptr= ptr.next
+			ptr = ptr.next
 		}
 		return
 	}
@@ -104,16 +114,3 @@ func main() {
 	stackObject.Reverse()
 	stackObject.Display()
 }
-
-
-/*
-Output:
-
-Size: 1
-Element:  A
-Removing element A from stack.
-No elements in stack to display.
-Size: 0
-Size: 1
-Element:  B
-*/
