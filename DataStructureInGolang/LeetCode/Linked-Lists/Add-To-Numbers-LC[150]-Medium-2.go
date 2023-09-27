@@ -57,6 +57,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		carry = sum / 10
 		
 		//Validating if this is the first iteration then create a new linkedlist. Else continue with created one.
+		//Assining nodeObject value to temp node in both the cases
 		if listNodeTemp == nil {
 			listNodeTemp = nodeObject
 			listNodeHead = nodeObject
