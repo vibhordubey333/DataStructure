@@ -29,6 +29,22 @@ Memory Usage: 5.7 MB, less than 6.40% of Go online submissions for Two Sum.
 Time Complexity: O(n)
 Space Complexity: O(n)
 */
+
+/*
+//Short
+func twoSum(nums []int,target int ) []int{
+	indexMap := make(map[int]int)
+	
+	for currIndex, currNum := range nums{
+		if requiredIndex, isPresent := indexMap[target-currNum]; isPresent{
+			return []int{requiredIndex,currIndex}
+		}
+		indexMap[currNum] = currIndex
+	}	
+	return []int{}
+	
+}
+*/
 func twoSum(nums []int, target int) []int {
 	// For storing output.
 	result := make([]int, 2)
