@@ -32,43 +32,33 @@ Constraints:
     0 <= s.length <= 5 * 104
     s consists of English letters, digits, symbols and spaces.
 
+Algorithm:
+	
+1. Use two pointers, left and right, to define a window.
+2. Use a set to store the characters inside the window.
+3. Expand right to add new characters while ensuring no duplicates.
+4. If a duplicate is found, move left until all characters in the window are unique again.
+5. Track the maximum length of such a valid window.
 
 */
 package main
 
 func lengthOfLongestSubstring(s string) int {
-	// Initialize a map to keep track of the characters in the current window.
-	charMap := make(map[byte]int)
-
-	// Initialize variables to keep track of the longest substring length and the current window.
-	longest := 0
-	start := 0
-
-	// Iterate through the string.
-	for i, char := range s {
-		// Convert the rune to a byte before using it as a key in the map.
-		byteChar := byte(char)
-
-		// If the character is already in the window, update the start index to the last occurrence of the character.
-		if lastOccurrence, ok := charMap[byteChar]; ok {
-			start = max(start, lastOccurrence+1)
-		}
-
-		// Update the length of the longest substring if necessary.
-		longest = max(longest, i-start+1)
-
-		// Update the character map with the current character.
-		charMap[byteChar] = i
-	}
-
-	// Return the length of the longest substring.
-	return longest
+    charSet := make(map[byte]bool) // Set to track characters
+    left, maxLength := 0, 0
+    for right := 0; right < len(s); right++ {
+        for charSet[s[right]] { // If s[right] is already in the set, remove from the left
+            delete(charSet, s[left])
+            left++
+        }
+        charSet[s[right]] = true // Add s[right] to set
+        maxLength = max(maxLength, right-left+1) // Update max length
+    }
+    return maxLength
 }
-
-// Helper function to return the maximum of two integers.
 func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+    if a > b {
+        return a
+    }
+    return b
 }
