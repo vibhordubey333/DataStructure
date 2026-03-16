@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WordSearchII LC 212 (H)</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --border: #e0e0e0;
+      --accent: #1565c0;
+      --code-bg: #f5f5f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      margin: 0;
+      padding: 1rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+    h2 { font-size: 1.35rem; margin-top: 1.5rem; color: #333; }
+    h3 { font-size: 1.1rem; margin-top: 1rem; color: #555; }
+    p { margin: 0.5rem 0; }
+    ul, ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+    th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+    th { background: var(--code-bg); font-weight: 600; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+    pre { margin: 1rem 0; overflow-x: auto; border-radius: 6px; }
+    code { font-family: "SF Mono", "Consolas", "Monaco", monospace; font-size: 0.9rem; }
+    pre code { padding: 0; background: none; }
+    .codehilite { margin: 1rem 0; border-radius: 6px; overflow-x: auto; }
+    .codehilite pre { margin: 0; padding: 1rem; }
+  </style>
+  <style>
+  pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #8F5902; font-style: italic } /* Comment */
+.codehilite .err { color: #A40000; border: 1px solid #EF2929 } /* Error */
+.codehilite .g { color: #000 } /* Generic */
+.codehilite .k { color: #204A87; font-weight: bold } /* Keyword */
+.codehilite .l { color: #000 } /* Literal */
+.codehilite .n { color: #000 } /* Name */
+.codehilite .o { color: #CE5C00; font-weight: bold } /* Operator */
+.codehilite .x { color: #000 } /* Other */
+.codehilite .p { color: #000; font-weight: bold } /* Punctuation */
+.codehilite .ch { color: #8F5902; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #8F5902; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #8F5902; font-style: italic } /* Comment.Preproc */
+.codehilite .cpf { color: #8F5902; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #8F5902; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #8F5902; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A40000 } /* Generic.Deleted */
+.codehilite .ge { color: #000; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #000; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #EF2929 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #000; font-style: italic } /* Generic.Output */
+.codehilite .gp { color: #8F5902 } /* Generic.Prompt */
+.codehilite .gs { color: #000; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #A40000; font-weight: bold } /* Generic.Traceback */
+.codehilite .kc { color: #204A87; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #204A87; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #204A87; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #204A87; font-weight: bold } /* Keyword.Pseudo */
+.codehilite .kr { color: #204A87; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #204A87; font-weight: bold } /* Keyword.Type */
+.codehilite .ld { color: #000 } /* Literal.Date */
+.codehilite .m { color: #0000CF; font-weight: bold } /* Literal.Number */
+.codehilite .s { color: #4E9A06 } /* Literal.String */
+.codehilite .na { color: #C4A000 } /* Name.Attribute */
+.codehilite .nb { color: #204A87 } /* Name.Builtin */
+.codehilite .nc { color: #000 } /* Name.Class */
+.codehilite .no { color: #000 } /* Name.Constant */
+.codehilite .nd { color: #5C35CC; font-weight: bold } /* Name.Decorator */
+.codehilite .ni { color: #CE5C00 } /* Name.Entity */
+.codehilite .ne { color: #C00; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #000 } /* Name.Function */
+.codehilite .nl { color: #F57900 } /* Name.Label */
+.codehilite .nn { color: #000 } /* Name.Namespace */
+.codehilite .nx { color: #000 } /* Name.Other */
+.codehilite .py { color: #000 } /* Name.Property */
+.codehilite .nt { color: #204A87; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #000 } /* Name.Variable */
+.codehilite .ow { color: #204A87; font-weight: bold } /* Operator.Word */
+.codehilite .pm { color: #000; font-weight: bold } /* Punctuation.Marker */
+.codehilite .w { color: #F8F8F8 } /* Text.Whitespace */
+.codehilite .mb { color: #0000CF; font-weight: bold } /* Literal.Number.Bin */
+.codehilite .mf { color: #0000CF; font-weight: bold } /* Literal.Number.Float */
+.codehilite .mh { color: #0000CF; font-weight: bold } /* Literal.Number.Hex */
+.codehilite .mi { color: #0000CF; font-weight: bold } /* Literal.Number.Integer */
+.codehilite .mo { color: #0000CF; font-weight: bold } /* Literal.Number.Oct */
+.codehilite .sa { color: #4E9A06 } /* Literal.String.Affix */
+.codehilite .sb { color: #4E9A06 } /* Literal.String.Backtick */
+.codehilite .sc { color: #4E9A06 } /* Literal.String.Char */
+.codehilite .dl { color: #4E9A06 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #8F5902; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #4E9A06 } /* Literal.String.Double */
+.codehilite .se { color: #4E9A06 } /* Literal.String.Escape */
+.codehilite .sh { color: #4E9A06 } /* Literal.String.Heredoc */
+.codehilite .si { color: #4E9A06 } /* Literal.String.Interpol */
+.codehilite .sx { color: #4E9A06 } /* Literal.String.Other */
+.codehilite .sr { color: #4E9A06 } /* Literal.String.Regex */
+.codehilite .s1 { color: #4E9A06 } /* Literal.String.Single */
+.codehilite .ss { color: #4E9A06 } /* Literal.String.Symbol */
+.codehilite .bp { color: #3465A4 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #000 } /* Name.Function.Magic */
+.codehilite .vc { color: #000 } /* Name.Variable.Class */
+.codehilite .vg { color: #000 } /* Name.Variable.Global */
+.codehilite .vi { color: #000 } /* Name.Variable.Instance */
+.codehilite .vm { color: #000 } /* Name.Variable.Magic */
+.codehilite .il { color: #0000CF; font-weight: bold } /* Literal.Number.Integer.Long */
+  </style>
+</head>
+<body>
+<div class="container">
+<h1 id="word-search-ii-leetcode-212-h">Word Search II — LeetCode 212 (H)</h1>
+<h2 id="1-what-is-the-problem">1. What is the problem?</h2>
+<p><strong>LeetCode 212 — Word Search II</strong></p>
+<p>Given an m×n board of characters and a list of words, return all words that exist on the board. Words can be constructed from adjacent cells (horizontal/vertical). Same cell cannot be used more than once per word.</p>
+<p><strong>Example 1</strong></p>
+<ul>
+<li><strong>Input:</strong> board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]</li>
+<li><strong>Output:</strong> ["eat","oath"]</li>
+</ul>
+<p><strong>Example 2</strong></p>
+<ul>
+<li><strong>Input:</strong> board = [["a","b"]], words = ["abcb"]</li>
+<li><strong>Output:</strong> []</li>
+</ul>
+<hr />
+<h2 id="2-brute-force-standard-solution">2. Brute Force / Standard Solution</h2>
+<p><strong>Trie + DFS:</strong> Build Trie from words. For each cell, DFS: if current path is prefix in Trie, continue; if word found, add to result (and optionally remove from Trie to avoid duplicates). Mark cell visited during DFS, unmark on backtrack.</p>
+<h3 id="python">Python</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TrieNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># store word at end</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_words</span><span class="p">(</span><span class="n">board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">words</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">w</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">word</span> <span class="o">=</span> <span class="n">w</span>
+
+    <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">board</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">rows</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="n">cols</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">ch</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">word</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">word</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">word</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># avoid duplicate</span>
+        <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span>
+        <span class="k">for</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dc</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)]:</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="n">dr</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="n">dc</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+        <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+
+<h3 id="golang">Golang</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">type</span><span class="w"> </span><span class="nx">TrieNode</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">children</span><span class="w"> </span><span class="p">[</span><span class="mi">26</span><span class="p">]</span><span class="o">*</span><span class="nx">TrieNode</span>
+<span class="w">    </span><span class="nx">word</span><span class="w">     </span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">findWords</span><span class="p">(</span><span class="nx">board</span><span class="w"> </span><span class="p">[][]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="nx">words</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">root</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">TrieNode</span><span class="p">{}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">w</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">words</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">node</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">root</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">w</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">idx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">TrieNode</span><span class="p">{}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">node</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">node</span><span class="p">.</span><span class="nx">word</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">w</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">rows</span><span class="p">,</span><span class="w"> </span><span class="nx">cols</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">board</span><span class="p">),</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">board</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">dfs</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="nx">TrieNode</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">dfs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">node</span><span class="w"> </span><span class="o">*</span><span class="nx">TrieNode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">rows</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">cols</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">ch</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">board</span><span class="p">[</span><span class="nx">r</span><span class="p">][</span><span class="nx">c</span><span class="p">]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;#&#39;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">idx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">ch</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">node</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">word</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">res</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">word</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">node</span><span class="p">.</span><span class="nx">word</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">board</span><span class="p">[</span><span class="nx">r</span><span class="p">][</span><span class="nx">c</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="sc">&#39;#&#39;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">d</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="p">[][]</span><span class="kt">int</span><span class="p">{{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">}}</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">dfs</span><span class="p">(</span><span class="nx">r</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="nx">c</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nx">node</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">board</span><span class="p">[</span><span class="nx">r</span><span class="p">][</span><span class="nx">c</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">ch</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">rows</span><span class="p">;</span><span class="w"> </span><span class="nx">r</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">cols</span><span class="p">;</span><span class="w"> </span><span class="nx">c</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">dfs</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="nx">root</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Time:</strong> O(m<em>n</em>4^L + total_word_chars) — Trie build + DFS  </li>
+<li><strong>Space:</strong> O(total_word_chars + L)</li>
+</ul>
+<hr />
+<h2 id="4-walkthrough">4. Walkthrough</h2>
+<p>Trie: oath, pea, eat, rain. DFS from (0,0) 'o': o→a→t→h found "oath". From (1,0) 'e': e→a→t found "eat". Prune when node has no children.</p>
+<hr />
+<h2 id="5-edge-cases">5. Edge Cases</h2>
+<ol>
+<li><strong>Empty words:</strong> return [].  </li>
+<li><strong>Word not on board:</strong> not in result.  </li>
+<li><strong>Duplicate words:</strong> Add once; set node.word = None after found.  </li>
+<li><strong>Single cell word:</strong> Check that cell.</li>
+</ol>
+<hr />
+<h2 id="6-pitfalls">6. Pitfalls</h2>
+<ol>
+<li><strong>Remove word after found:</strong> Avoid adding same word from different paths.  </li>
+<li><strong>Prune Trie:</strong> Remove nodes with no children after word found (optional optimization).  </li>
+<li><strong>Backtrack:</strong> Restore board[r][c] after DFS.</li>
+</ol>
+<hr />
+<h2 id="7-follow-ups">7. Follow-ups</h2>
+<ol>
+<li><strong>Return positions?</strong> Store (r,c) path.  </li>
+<li><strong>Count occurrences?</strong> Don't remove node.word.  </li>
+<li><strong>Large word list?</strong> Trie prunes early; better than separate DFS per word.</li>
+</ol>
+<hr />
+<h2 id="8-when-to-use">8. When to Use</h2>
+<ul>
+<li><strong>Multiple words in grid:</strong> Trie + DFS; prune when prefix not in Trie.  </li>
+<li><strong>Pattern:</strong> Trie for prefix; same as "Word Search" + "Implement Trie".</li>
+</ul>
+</div>
+</body>
+</html>
