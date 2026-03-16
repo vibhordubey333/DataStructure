@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SearchInRotatedSortedArray LC 33 (M)</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --border: #e0e0e0;
+      --accent: #1565c0;
+      --code-bg: #f5f5f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      margin: 0;
+      padding: 1rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+    h2 { font-size: 1.35rem; margin-top: 1.5rem; color: #333; }
+    h3 { font-size: 1.1rem; margin-top: 1rem; color: #555; }
+    p { margin: 0.5rem 0; }
+    ul, ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+    th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+    th { background: var(--code-bg); font-weight: 600; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+    pre { margin: 1rem 0; overflow-x: auto; border-radius: 6px; }
+    code { font-family: "SF Mono", "Consolas", "Monaco", monospace; font-size: 0.9rem; }
+    pre code { padding: 0; background: none; }
+    .codehilite { margin: 1rem 0; border-radius: 6px; overflow-x: auto; }
+    .codehilite pre { margin: 0; padding: 1rem; }
+  </style>
+  <style>
+  pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #8F5902; font-style: italic } /* Comment */
+.codehilite .err { color: #A40000; border: 1px solid #EF2929 } /* Error */
+.codehilite .g { color: #000 } /* Generic */
+.codehilite .k { color: #204A87; font-weight: bold } /* Keyword */
+.codehilite .l { color: #000 } /* Literal */
+.codehilite .n { color: #000 } /* Name */
+.codehilite .o { color: #CE5C00; font-weight: bold } /* Operator */
+.codehilite .x { color: #000 } /* Other */
+.codehilite .p { color: #000; font-weight: bold } /* Punctuation */
+.codehilite .ch { color: #8F5902; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #8F5902; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #8F5902; font-style: italic } /* Comment.Preproc */
+.codehilite .cpf { color: #8F5902; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #8F5902; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #8F5902; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A40000 } /* Generic.Deleted */
+.codehilite .ge { color: #000; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #000; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #EF2929 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #000; font-style: italic } /* Generic.Output */
+.codehilite .gp { color: #8F5902 } /* Generic.Prompt */
+.codehilite .gs { color: #000; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #A40000; font-weight: bold } /* Generic.Traceback */
+.codehilite .kc { color: #204A87; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #204A87; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #204A87; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #204A87; font-weight: bold } /* Keyword.Pseudo */
+.codehilite .kr { color: #204A87; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #204A87; font-weight: bold } /* Keyword.Type */
+.codehilite .ld { color: #000 } /* Literal.Date */
+.codehilite .m { color: #0000CF; font-weight: bold } /* Literal.Number */
+.codehilite .s { color: #4E9A06 } /* Literal.String */
+.codehilite .na { color: #C4A000 } /* Name.Attribute */
+.codehilite .nb { color: #204A87 } /* Name.Builtin */
+.codehilite .nc { color: #000 } /* Name.Class */
+.codehilite .no { color: #000 } /* Name.Constant */
+.codehilite .nd { color: #5C35CC; font-weight: bold } /* Name.Decorator */
+.codehilite .ni { color: #CE5C00 } /* Name.Entity */
+.codehilite .ne { color: #C00; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #000 } /* Name.Function */
+.codehilite .nl { color: #F57900 } /* Name.Label */
+.codehilite .nn { color: #000 } /* Name.Namespace */
+.codehilite .nx { color: #000 } /* Name.Other */
+.codehilite .py { color: #000 } /* Name.Property */
+.codehilite .nt { color: #204A87; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #000 } /* Name.Variable */
+.codehilite .ow { color: #204A87; font-weight: bold } /* Operator.Word */
+.codehilite .pm { color: #000; font-weight: bold } /* Punctuation.Marker */
+.codehilite .w { color: #F8F8F8 } /* Text.Whitespace */
+.codehilite .mb { color: #0000CF; font-weight: bold } /* Literal.Number.Bin */
+.codehilite .mf { color: #0000CF; font-weight: bold } /* Literal.Number.Float */
+.codehilite .mh { color: #0000CF; font-weight: bold } /* Literal.Number.Hex */
+.codehilite .mi { color: #0000CF; font-weight: bold } /* Literal.Number.Integer */
+.codehilite .mo { color: #0000CF; font-weight: bold } /* Literal.Number.Oct */
+.codehilite .sa { color: #4E9A06 } /* Literal.String.Affix */
+.codehilite .sb { color: #4E9A06 } /* Literal.String.Backtick */
+.codehilite .sc { color: #4E9A06 } /* Literal.String.Char */
+.codehilite .dl { color: #4E9A06 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #8F5902; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #4E9A06 } /* Literal.String.Double */
+.codehilite .se { color: #4E9A06 } /* Literal.String.Escape */
+.codehilite .sh { color: #4E9A06 } /* Literal.String.Heredoc */
+.codehilite .si { color: #4E9A06 } /* Literal.String.Interpol */
+.codehilite .sx { color: #4E9A06 } /* Literal.String.Other */
+.codehilite .sr { color: #4E9A06 } /* Literal.String.Regex */
+.codehilite .s1 { color: #4E9A06 } /* Literal.String.Single */
+.codehilite .ss { color: #4E9A06 } /* Literal.String.Symbol */
+.codehilite .bp { color: #3465A4 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #000 } /* Name.Function.Magic */
+.codehilite .vc { color: #000 } /* Name.Variable.Class */
+.codehilite .vg { color: #000 } /* Name.Variable.Global */
+.codehilite .vi { color: #000 } /* Name.Variable.Instance */
+.codehilite .vm { color: #000 } /* Name.Variable.Magic */
+.codehilite .il { color: #0000CF; font-weight: bold } /* Literal.Number.Integer.Long */
+  </style>
+</head>
+<body>
+<div class="container">
+<h1 id="search-in-rotated-sorted-array-leetcode-33-m">Search in Rotated Sorted Array — LeetCode 33 (M)</h1>
+<h2 id="1-what-is-the-problem">1. What is the problem?</h2>
+<p><strong>LeetCode 33 — Search in Rotated Sorted Array</strong></p>
+<p>There is an integer array <code>nums</code> sorted in ascending order (distinct values), rotated at an unknown pivot. Given <code>target</code>, return its index if it is in <code>nums</code>, else -1. O(log n) required.</p>
+<p><strong>Example 1</strong></p>
+<ul>
+<li><strong>Input:</strong> <code>nums = [4, 5, 6, 7, 0, 1, 2]</code>, <code>target = 0</code></li>
+<li><strong>Output:</strong> <code>4</code></li>
+</ul>
+<p><strong>Example 2</strong></p>
+<ul>
+<li><strong>Input:</strong> <code>nums = [4, 5, 6, 7, 0, 1, 2]</code>, <code>target = 3</code></li>
+<li><strong>Output:</strong> <code>-1</code></li>
+</ul>
+<hr />
+<h2 id="2-brute-force-solution">2. Brute Force Solution</h2>
+<p>Linear scan: if <code>nums[i] == target</code> return <code>i</code>; else return -1.</p>
+<h3 id="python-brute-force">Python (brute force)</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search_brute</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div>
+
+<h3 id="golang-brute-force">Golang (brute force)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nx">searchBrute</span><span class="p">(</span><span class="nx">nums</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">nums</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">i</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Time:</strong> O(n)  </li>
+<li><strong>Space:</strong> O(1)</li>
+</ul>
+<hr />
+<h2 id="3-optimized-solution-binary-search">3. Optimized Solution (Binary Search)</h2>
+<p><strong>Idea:</strong> One half of the array is always sorted. Compare <code>target</code> with the sorted half: if target is in that range, search there; else search the other half.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li><code>left, right = 0, len(nums)-1</code>.</li>
+<li>While <code>left &lt;= right</code>:  </li>
+<li><code>mid = left + (right-left)/2</code>  </li>
+<li>If <code>nums[mid] == target</code>: return mid  </li>
+<li>If <code>nums[left] &lt;= nums[mid]</code>: left half is sorted. If <code>nums[left] &lt;= target &lt; nums[mid]</code>, search left; else right.  </li>
+<li>Else: right half is sorted. If <code>nums[mid] &lt; target &lt;= nums[right]</code>, search right; else left.  </li>
+<li>Return -1.</li>
+</ol>
+<h3 id="python-optimized">Python (optimized)</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div>
+
+<h3 id="golang-optimized">Golang (optimized)</h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nx">search</span><span class="p">(</span><span class="nx">nums</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">left</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mid</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">right</span><span class="o">-</span><span class="nx">left</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">mid</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">nums</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">nums</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">right</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">left</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">nums</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">left</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">right</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">mid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Time:</strong> O(log n)  </li>
+<li><strong>Space:</strong> O(1)</li>
+</ul>
+<hr />
+<h2 id="4-walkthrough">4. Walkthrough</h2>
+<p><strong>Example 1:</strong> <code>nums = [4, 5, 6, 7, 0, 1, 2]</code>, <code>target = 0</code></p>
+<table>
+<thead>
+<tr>
+<th>left</th>
+<th>right</th>
+<th>mid</th>
+<th>nums[mid]</th>
+<th>left half sorted?</th>
+<th>action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>6</td>
+<td>3</td>
+<td>7</td>
+<td>yes (4≤7)</td>
+<td>0 in [4,7)? No → left=4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>no</td>
+<td>0 in (1,2]? No → right=4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>-</td>
+<td>match → return 4</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-edge-cases">5. Edge Cases</h2>
+<ol>
+<li><strong>Not rotated:</strong> standard binary search.  </li>
+<li><strong>Single element:</strong> handle in loop.  </li>
+<li><strong>Target at pivot:</strong> e.g. min element; right half sorted.  </li>
+<li><strong>Target not in array:</strong> exit loop, return -1.  </li>
+<li><strong>Two elements:</strong> e.g. <code>[1,3]</code>, target 3; left half sorted, 3 not in [1,3) → left=1, then mid=1, match.</li>
+</ol>
+<hr />
+<h2 id="6-pitfalls">6. Pitfalls</h2>
+<ol>
+<li><strong>Using <code>nums[left] &lt; nums[mid]</code>:</strong> With two elements <code>[3,1]</code>, left=0, mid=0, so left half “sorted”; use <code>&lt;=</code>.  </li>
+<li><strong>Including mid in range:</strong> Use <code>target &lt; nums[mid]</code> for left half to avoid infinite loop.  </li>
+<li><strong>Forgetting <code>left &lt;= right</code>:</strong> We need to check the last remaining element.</li>
+</ol>
+<hr />
+<h2 id="7-follow-ups">7. Follow-ups</h2>
+<ol>
+<li><strong>Duplicates allowed (LC 81)?</strong> When <code>nums[left]==nums[mid]==nums[right]</code>, shrink (e.g. left++, right--) and may degrade to O(n).  </li>
+<li><strong>Find pivot first then binary search?</strong> Two passes; one modified binary search is simpler.  </li>
+<li><strong>How many times rotated?</strong> Pivot index = number of rotations (if 1..n rotations).</li>
+</ol>
+<hr />
+<h2 id="8-when-to-use">8. When to Use</h2>
+<ul>
+<li><strong>Rotated sorted array + search:</strong> Determine which half is sorted and whether target lies in that range.  </li>
+<li><strong>Pattern:</strong> “Sorted but rotated” → one half always sorted; binary search with conditional branch.</li>
+</ul>
+</div>
+</body>
+</html>
