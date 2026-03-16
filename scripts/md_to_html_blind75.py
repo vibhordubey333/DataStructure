@@ -23,7 +23,7 @@ except ImportError:
 
 BLIND75_DIR = Path(__file__).resolve().parent.parent / "blind75"
 # Skip README and empty/legacy files
-SKIP_NAMES = {"README.md", "BestTimeToBuyAndSellStock-LeetCode121.md"}
+SKIP_NAMES = {"README.md"}
 
 # Pygments style: colorful, readable (options: default, tango, emacs, friendly, monokai, etc.)
 PYGMENTS_STYLE = "tango"
